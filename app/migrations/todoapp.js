@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
 
         knex.schema.createTable('todos', function(table) {
             table.increments('id').primary();
+            table.string('uuid');
             table.string('title');
             table.boolean('completed');
         }),

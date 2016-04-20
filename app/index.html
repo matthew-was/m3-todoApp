@@ -1,36 +1,23 @@
-<!doctype html>
-<html lang="en" data-framework="typescript">
-  <head>
-    <meta charset="utf-8">
-    <title>React • TodoMVC</title>
-    <link rel="stylesheet"
-          href="node_modules/todomvc-common/base.css">
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="utf-8">
+    	<title>To Do List</title>
+   	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet"
-          href="node_modules/todomvc-app-css/index.css">
-
-  </head>
-  <body>
-    <section class="todoapp"></section>
-    <footer class="info">
-      <p>Double-click to edit a todo</p>
-      <p>Built from <a href="http://todomvc.com">TodoMVC</a></p>
-      <p>With the help of <a href="http://blog.wolksoftware.com/working-with-react-and-typescript">Remo H. Jansen</a></p>
-    </footer>
-
-    <script type="text/javascript"
-            src="node_modules/react/dist/react-with-addons.js">
-    </script>
-
-    <script type="text/javascript"
-            src="node_modules/director/build/director.js">
-    </script>
-
-    <script type="text/javascript" src="js/constants.js"></script>
-    <script type="text/javascript" src="js/utils.js"></script>
-    <script type="text/javascript" src="js/todoModel.js"></script>
-    <script type="text/javascript" src="js/todoItem.js"></script>
-    <script type="text/javascript" src="js/footer.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-  </body>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+ 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+ 
+		<link rel="stylesheet" href="js/style.css" />
+		<script src="js/main.js" type="text/babel"></script>
+		
+	</head>
+	<body>
+    	<div id="content"></div>
+ 	</body>
 </html>
