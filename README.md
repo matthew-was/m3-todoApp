@@ -16,4 +16,9 @@ Tech Stack should include but is not limited to:
 Executing docker-compose up at the root of the repository should start two dockers containers, one running the 
 express app the other the postgres server.
 
+---------------------------------
+
+Matthew Wasbrough Pull request 21st April 2016
+
+Myles, just in case you were interested in looking through the code I use to create the app requested.
 
