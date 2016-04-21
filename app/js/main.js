@@ -87,11 +87,28 @@ var TodoItem = React.createClass({
 		var id = "#"+e;
 		this.props.onBlur(id);
 	},
-	handleChange: function(e) {
-		console.log(e);
+	handleChange: function(uuid, e) {
+		var obj = [];
+		for (var i=0; i<this.props.data.length; i+=1){
+			if (uuid == this.props.data[i].uuid) {
+				obj[i] = {};
+				obj[i].id = this.props.data[i].id;
+				obj[i].uuid = this.props.data[i].uuid;
+				obj[i].title = e.target.value;
+				obj[i].completed = this.props.data[i].completed;
+			} else {
+				obj[i] = {};
+				obj[i] = this.props.data[i];
+			}
+		}
+		this.props.onInputChange(obj);
 	},
-	handleKeyDown: function(e) {
-		console.log(e);
+	handleKeyDown: function(uuid, e) {
+		if (e.keyCode !== 13) {
+			return;
+		};
+		e.preventDefault();
+		this.props.onKeyDown(uuid);
 	},
 	render: function() {
 		var Item = this.props.data.map(function(todo) {
@@ -114,8 +131,8 @@ var TodoItem = React.createClass({
 								style={{display:"none"}}
 								value={todo.title}
 								onBlur={this.handleBlur.bind(this, todo.uuid)}
-								onChange={this.handleChange}
-								onKeyDown={this.handleKeyDown}
+								onChange={this.handleChange.bind(this, todo.uuid)}
+								onKeyDown={this.handleKeyDown.bind(this, todo.uuid)}
 							/>
 						</div>
 						<span className="input-group-btn input-group-addon">
@@ -223,7 +240,6 @@ var TodoListBox = React.createClass({
 		}
 	},
 	handleOnEdit: function(e) {
-		console.log(e);
 		$(e)[0].children[0].children[0].style.display="none";
 		$(e)[0].children[1].children[0].style.display="none";
 		$(e)[0].children[1].children[1].style.display="";
@@ -231,11 +247,23 @@ var TodoListBox = React.createClass({
 		$(e)[0].children[1].children[1].focus();
 	},
 	handleOnBlur: function(e) {
-		console.log(e);
 		$(e)[0].children[0].children[0].style.display="";
 		$(e)[0].children[1].children[0].style.display="";
 		$(e)[0].children[1].children[1].style.display="none";
 		$(e)[0].children[2].children[0].style.display="";
+		this.loadDataFromServer();
+	},
+	handleInputChange: function(obj) {
+		this.setState({data: obj});
+	},
+	handleOnKeyDown: function(uuid) {
+		for (var i=0; i<this.state.data.length; i+=1) {
+			if (this.state.data[i].uuid == uuid) {
+				this.handleItemSubmit(this.state.data[i]);
+			}
+		}
+		var id = "#"+uuid;
+		this.handleOnBlur(id);
 	},
 	render: function() {
 		return (
@@ -248,7 +276,7 @@ var TodoListBox = React.createClass({
 				<div className="col-sm-8 col-sm-offset-2">
 					<div id="todoList" className="col-xs-12">
 						<ul className="todoItemList">
-							<TodoItem data={this.state.data} onCheckChanged={this.handleCheckChanged} onClose={this.handleOnClose} onEdit={this.handleOnEdit} onBlur={this.handleOnBlur}/>
+							<TodoItem data={this.state.data} onCheckChanged={this.handleCheckChanged} onClose={this.handleOnClose} onEdit={this.handleOnEdit} onBlur={this.handleOnBlur} onInputChange={this.handleInputChange} onKeyDown={this.handleOnKeyDown}/>
 						</ul>
 					</div>
 				</div>
