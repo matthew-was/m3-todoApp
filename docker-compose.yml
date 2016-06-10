@@ -6,6 +6,7 @@ services:
       - data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
   todoapp:
     image: mattwas/todoapp:latest
     links:
@@ -17,6 +18,3 @@ services:
       - POSTGRES_PASSWORD=test
     ports:
       - "7777:7777"
-    
-volumes:
-  data: {}
